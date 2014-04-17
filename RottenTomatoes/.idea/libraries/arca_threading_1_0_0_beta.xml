@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="arca-threading-1.0.0-beta">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-threading/1.0.0-beta/4b97b709663d33e3a17dc64dc70efc4dc792441e/arca-threading-1.0.0-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-threading/1.0.0-beta/c4e0a8a3e71b5e6c28edd05f0f725a574bf27f8c/arca-threading-1.0.0-beta-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
