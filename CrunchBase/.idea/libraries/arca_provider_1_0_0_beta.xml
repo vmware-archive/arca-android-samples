@@ -1,11 +1,9 @@
 <component name="libraryTable">
   <library name="arca-provider-1.0.0-beta">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-provider/1.0.0-beta/aba04240434569cde9c7eaeab0190e048b354e1e/arca-provider-1.0.0-beta.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-provider/1.0.0-beta/bf0127dfff57c485f16be94adc953f6822ea771f/arca-provider-1.0.0-beta.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-provider/1.0.0-beta/b3252a9403abd319de9d6a709fb8ba22b9f62e24/arca-provider-1.0.0-beta-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
