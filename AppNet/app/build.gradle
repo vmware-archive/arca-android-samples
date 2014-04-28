@@ -10,16 +10,10 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
-        release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-        }
-    }
 }
 
 dependencies {
-    compile 'io.pivotal:arca:1.0.0-beta'
+    compile 'io.pivotal:arca:1.0-beta'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support:appcompat-v7:+'
     compile fileTree(dir: 'libs', include: ['*.jar'])

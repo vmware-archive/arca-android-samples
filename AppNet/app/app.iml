@@ -82,11 +82,8 @@
     <orderEntry type="library" exported="" name="arca-provider-1.0.0-beta" level="project" />
     <orderEntry type="library" exported="" name="arca-fragments-1.0.0-beta" level="project" />
     <orderEntry type="library" exported="" name="arca-monitor-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-1.0.0-beta" level="project" />
     <orderEntry type="library" exported="" name="arca-utils-1.0.0-beta" level="project" />
     <orderEntry type="library" exported="" name="arca-adapters-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-app-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-core-1.0.0-beta" level="project" />
   </component>
 </module>
 

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="arca-broadcaster-1.0-beta">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-broadcaster/1.0-beta/b022f8a316ef94044ad29ccd2662ced1b3a9dc62/arca-broadcaster-1.0-beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-broadcaster/1.0-beta/521bc3206f9a8dc17db031b84990a2b6f16ad4f/arca-broadcaster-1.0-beta-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

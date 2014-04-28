@@ -1,9 +1,11 @@
 <component name="libraryTable">
   <library name="arca-utils-1.0.0-beta">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-utils/1.0.0-beta/e13aad2bebd61a5a487276116dc9bbf9b9212c76/arca-utils-1.0.0-beta.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-utils/1.0.0-beta/c396b0caaa2a6ddbb6f060e3e4045fdf507c4a7e/arca-utils-1.0.0-beta.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.pivotal/arca-utils/1.0.0-beta/c7dfdb184d6be1e46b94a6aef7983090b89daf7d/arca-utils-1.0.0-beta-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

@@ -70,23 +70,20 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="arca-dispatcher-1.0.0-beta" level="project" />
     <orderEntry type="library" exported="" name="xl-network_lib-android-v1.2" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="xl-image_utils_lib-android-v1.4" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
-    <orderEntry type="library" exported="" name="arca-threading-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-service-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-broadcaster-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-provider-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-fragments-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-monitor-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-utils-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-adapters-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-app-1.0.0-beta" level="project" />
-    <orderEntry type="library" exported="" name="arca-core-1.0.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-utils-1.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-service-1.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-monitor-1.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-broadcaster-1.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-adapters-1.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-threading-1.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-dispatcher-1.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-fragments-1.0-beta" level="project" />
+    <orderEntry type="library" exported="" name="arca-provider-1.0-beta" level="project" />
   </component>
 </module>
 
