@@ -12,12 +12,5 @@ buildscript {
 allprojects {
     repositories {
         mavenCentral()
-        maven {
-            url 'https://maven.xtremelabs.com/artifactory/xl-libs'
-            credentials {
-                username System.getenv('MAVEN_USER')
-                password System.getenv('MAVEN_PASS')
-            }
-        }
     }
 }
