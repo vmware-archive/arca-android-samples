@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".activities.CompanyActivity" />
+        <activity android:name=".activities.CompanyActivity"
+            android:parentActivityName=".activities.CompanyListActivity"/>
 
         <service
             android:name="io.pivotal.arca.service.OperationService"

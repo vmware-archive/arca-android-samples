@@ -3,7 +3,7 @@
     package="com.rottentomatoes.app" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="9"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -29,7 +29,9 @@
         </activity>
         
         <activity android:name=".activities.MovieListActivity" />
-        <activity android:name=".activities.MovieActivity" />
+
+        <activity android:name=".activities.MovieActivity"
+            android:parentActivityName=".activities.MovieListActivity"/>
 
         <service
             android:name="io.pivotal.arca.service.OperationService"

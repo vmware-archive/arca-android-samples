@@ -8,7 +8,7 @@ import android.content.SyncResult;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.rottentomatoes.app.operations.SyncMoviesOperation;
+import com.rottentomatoes.app.operations.MovieListOperation;
 import com.rottentomatoes.app.providers.RottenTomatoesContentProvider;
 
 import io.pivotal.arca.service.OperationService;
@@ -26,15 +26,15 @@ public class RottenTomatoesSyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         if (System.currentTimeMillis() > (mLastSyncTime + MANUAL_SYNC_INTERVAL)) {
-            OperationService.start(getContext(), new SyncMoviesOperation(createMoviesUri("box_office")));
-            OperationService.start(getContext(), new SyncMoviesOperation(createMoviesUri("in_theaters")));
-            OperationService.start(getContext(), new SyncMoviesOperation(createMoviesUri("opening")));
-            OperationService.start(getContext(), new SyncMoviesOperation(createMoviesUri("upcoming")));
+            OperationService.start(getContext(), new MovieListOperation(createMoviesUri(), "box_office"));
+            OperationService.start(getContext(), new MovieListOperation(createMoviesUri(), "in_theaters"));
+            OperationService.start(getContext(), new MovieListOperation(createMoviesUri(), "opening"));
+            OperationService.start(getContext(), new MovieListOperation(createMoviesUri(), "upcoming"));
             mLastSyncTime = System.currentTimeMillis();
         }
     }
 
-	private static Uri createMoviesUri(final String type) {
-		return Uri.withAppendedPath(RottenTomatoesContentProvider.Uris.MOVIES_URI, type);
+	private static Uri createMoviesUri() {
+		return RottenTomatoesContentProvider.Uris.MOVIES_URI;
 	}
 }

@@ -1,7 +1,21 @@
 package com.rottentomatoes.app.models;
 
-public class ReleaseDates extends AbsReleaseDates {
+import com.google.gson.annotations.SerializedName;
 
-	public static class Fields extends AbsReleaseDates.Fields {}
+public class ReleaseDates {
+
+    protected static class Fields {
+        public static final String THEATER = "theater";
+    }
+
+    @SerializedName(Fields.THEATER) private String mTheater;
+
+    public String getTheater() {
+        return mTheater;
+    }
+
+    public void setTheater(final String theater) {
+        mTheater = theater;
+    }
 	
 }

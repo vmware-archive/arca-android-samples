@@ -2,7 +2,7 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    buildToolsVersion "19.1.0"
 
     defaultConfig {
         minSdkVersion 9
@@ -13,9 +13,8 @@ android {
 }
 
 dependencies {
-    compile 'io.pivotal:arca:1.0-beta'
     compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.android.support:appcompat-v7:+'
+    compile 'io.pivotal:arca:1.0-beta.3-SNAPSHOT'
+    compile 'com.android.support:appcompat-v7:19.+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
-

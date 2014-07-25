@@ -1,10 +1,10 @@
 package com.rottentomatoes.app.models;
 
-import java.util.List;
-
 import android.content.ContentValues;
 
-import com.rottentomatoes.app.datasets.MovieTypeTable.Columns;
+import com.rottentomatoes.app.providers.RottenTomatoesContentProvider.MovieTypeTable.Columns;
+
+import java.util.List;
 
 public class MovieType {
 
@@ -18,8 +18,8 @@ public class MovieType {
 	
 	public static ContentValues getContentValues(final Movie item, final String type) {
 		final ContentValues value = new ContentValues();
-		value.put(Columns.ID.name, item.getId());
-		value.put(Columns.TYPE.name, type);
+		value.put(Columns.MOVIE_ID, item.getId());
+		value.put(Columns.TYPE, type);
 		return value;
 	}
 	

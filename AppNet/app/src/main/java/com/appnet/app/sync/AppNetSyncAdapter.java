@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
 
-import com.appnet.app.operations.SyncPostsOperation;
+import com.appnet.app.operations.PostListOperation;
 import com.appnet.app.providers.AppNetContentProvider;
 
 import io.pivotal.arca.service.OperationService;
@@ -25,7 +25,7 @@ public class AppNetSyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         if (System.currentTimeMillis() > (mLastSyncTime + MANUAL_SYNC_INTERVAL)) {
-            OperationService.start(getContext(), new SyncPostsOperation(AppNetContentProvider.Uris.POSTS_URI));
+            OperationService.start(getContext(), new PostListOperation(AppNetContentProvider.Uris.POSTS_URI));
             mLastSyncTime = System.currentTimeMillis();
         }
     }

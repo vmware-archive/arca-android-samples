@@ -1,21 +1,16 @@
 package com.appnet.app.operations;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import io.pivotal.arca.dispatcher.ErrorBroadcaster;
-import io.pivotal.arca.service.Operation;
 import io.pivotal.arca.service.ServiceError;
-import io.pivotal.arca.service.Task;
+import io.pivotal.arca.service.SimpleOperation;
 
-public class PostOperation extends Operation {
+public class PostOperation extends SimpleOperation {
 
 	public PostOperation(final Uri uri) {
 		super(uri);
@@ -30,19 +25,10 @@ public class PostOperation extends Operation {
 		super.writeToParcel(dest, flags);
 	}
 
-	@Override
-	public Set<Task<?>> onCreateTasks() {
-		final Set<Task<?>> set = new HashSet<Task<?>>();
-		final String id = getUri().getLastPathSegment();
-		set.add(new PostTask(id));
-		return set;
-	}
-
-	@Override
-	public void onSuccess(final Context context, final List<Task<?>> completed) {
-		final ContentResolver resolver = context.getContentResolver();
-		resolver.notifyChange(getUri(), null);
-	}
+    @Override
+    public ContentValues[] onExecute(final Context context) throws Exception {
+        throw new Exception("Override this method to return a json string for a Post.");
+    }
 
 	@Override
 	public void onFailure(final Context context, final ServiceError error) {

@@ -28,7 +28,9 @@
         </activity>
         
         <activity android:name=".activities.PostListActivity" />
-        <activity android:name=".activities.PostActivity" />
+
+        <activity android:name=".activities.PostActivity"
+            android:parentActivityName=".activities.PostListActivity"/>
 
         <service
             android:name="io.pivotal.arca.service.OperationService"

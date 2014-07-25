@@ -8,11 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.crunchbase.app.R;
-import com.crunchbase.app.datasets.CompanyTable;
 import com.crunchbase.app.providers.CrunchBaseContentProvider;
+import com.crunchbase.app.providers.CrunchBaseContentProvider.CompanyTable;
 import com.xtremelabs.imageutils.ImageLoader;
 
 import java.util.Arrays;
@@ -21,19 +20,17 @@ import java.util.Collection;
 import io.pivotal.arca.adapters.Binding;
 import io.pivotal.arca.adapters.SupportItemAdapter;
 import io.pivotal.arca.adapters.ViewBinder;
-import io.pivotal.arca.dispatcher.Error;
 import io.pivotal.arca.dispatcher.Query;
-import io.pivotal.arca.dispatcher.QueryResult;
 import io.pivotal.arca.fragments.ArcaItemSupportFragment;
 
 public class CompanyFragment extends ArcaItemSupportFragment implements ViewBinder {
 	
 	private static final Collection<Binding> BINDINGS = Arrays.asList(new Binding[] { 
-		new Binding(R.id.company_name, CompanyTable.Columns.NAME.name),
-		new Binding(R.id.company_category_code, CompanyTable.Columns.CATEGORY_CODE.name),
-		new Binding(R.id.company_description, CompanyTable.Columns.DESCRIPTION.name),
-		new Binding(R.id.company_overview, CompanyTable.Columns.OVERVIEW.name),
-		new Binding(R.id.company_image, CompanyTable.Columns.IMAGE_URL.name),
+		new Binding(R.id.company_name, CompanyTable.Columns.NAME),
+		new Binding(R.id.company_category_code, CompanyTable.Columns.CATEGORY_CODE),
+		new Binding(R.id.company_description, CompanyTable.Columns.DESCRIPTION),
+		new Binding(R.id.company_overview, CompanyTable.Columns.OVERVIEW),
+		new Binding(R.id.company_image, CompanyTable.Columns.IMAGE_URL),
 	});
 
 	private String mId;
@@ -63,45 +60,18 @@ public class CompanyFragment extends ArcaItemSupportFragment implements ViewBind
 		super.onDestroyView();
 	}
 	
-	@Override
-	public void onStart() {
-		super.onStart();
-		
-		loadCompany(mId);
-	}
-	
 	public void setId(final String id) {
-		mId = id;
+        if (id != null) {
+            mId = id;
+            reload();
+        }
 	}
 
-	private void loadCompany(final String id) {
-		final Uri baseUri = CrunchBaseContentProvider.Uris.COMPANIES_URI;
-		final Uri contentUri = Uri.withAppendedPath(baseUri, id);
-		execute(new Query(contentUri));
-	}
-	
-	@Override
-	public void onContentError(final Error error) {
-		Toast.makeText(getActivity(), "ERROR: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-	}
-	
-	@Override
-	public void onContentChanged(final QueryResult result) {
-		final CursorAdapter adapter = getCursorAdapter();
-		if (adapter.getCount() > 0) {
-			showResults();
-		} else {
-			hideLoading();
-		}
-	}
-	
-	private void showResults() {
-		getView().findViewById(R.id.company_container).setVisibility(View.VISIBLE);
-		getView().findViewById(R.id.loading).setVisibility(View.INVISIBLE);
-	}
-	
-	private void hideLoading() {
-		getView().findViewById(R.id.loading).setVisibility(View.INVISIBLE);
+	private void reload() {
+		final Uri uri = CrunchBaseContentProvider.Uris.COMPANIES_URI;
+        final Query query = new Query(uri);
+        query.setWhere(CompanyTable.Columns.NAME + "=?", mId);
+        execute(query);
 	}
 
 	@Override

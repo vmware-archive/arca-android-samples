@@ -1,8 +1,5 @@
 package com.crunchbase.app.fragments;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +13,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.crunchbase.app.R;
+import com.crunchbase.app.activities.CompanyActivity;
+import com.crunchbase.app.monitors.CompanyListMonitor;
+import com.crunchbase.app.providers.CrunchBaseContentProvider;
+import com.crunchbase.app.providers.CrunchBaseContentProvider.CompanyTable;
+import com.xtremelabs.imageutils.ImageLoader;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 import io.pivotal.arca.adapters.Binding;
 import io.pivotal.arca.adapters.SupportCursorAdapter;
 import io.pivotal.arca.adapters.ViewBinder;
@@ -24,19 +31,13 @@ import io.pivotal.arca.dispatcher.Query;
 import io.pivotal.arca.dispatcher.QueryResult;
 import io.pivotal.arca.fragments.ArcaAdapterSupportFragment;
 import io.pivotal.arca.monitor.ArcaDispatcher;
-import com.crunchbase.app.R;
-import com.crunchbase.app.activities.CompanyActivity;
-import com.crunchbase.app.datasets.CompanyTable;
-import com.crunchbase.app.monitors.CompanyListMonitor;
-import com.crunchbase.app.providers.CrunchBaseContentProvider;
-import com.xtremelabs.imageutils.ImageLoader;
 
 public class CompanyListFragment extends ArcaAdapterSupportFragment implements OnItemClickListener, ViewBinder {
 
 	private static final Collection<Binding> BINDINGS = Arrays.asList(new Binding[] { 
-		new Binding(R.id.list_item_company_name, CompanyTable.Columns.NAME.name),
-		new Binding(R.id.list_item_company_overview, CompanyTable.Columns.OVERVIEW.name),
-		new Binding(R.id.list_item_company_image, CompanyTable.Columns.IMAGE_URL.name),
+		new Binding(R.id.list_item_company_name, CompanyTable.Columns.NAME),
+		new Binding(R.id.list_item_company_overview, CompanyTable.Columns.OVERVIEW),
+		new Binding(R.id.list_item_company_image, CompanyTable.Columns.IMAGE_URL),
 	});
 
 	private ImageLoader mImageLoader;
@@ -66,6 +67,8 @@ public class CompanyListFragment extends ArcaAdapterSupportFragment implements O
 	public void onViewCreated(final View view, final Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		mImageLoader = ImageLoader.buildImageLoaderForSupportFragment(this);
+
+        loadCompanies();
 	}
 	
 	@Override
@@ -75,23 +78,17 @@ public class CompanyListFragment extends ArcaAdapterSupportFragment implements O
 	}
 	
 	@Override
-	public void onStart() {
-		super.onStart();
-		loadCompanies();
-	}
-	
-	@Override
 	public int getAdapterViewId() {
 		return R.id.company_list;
 	}
 	
 	private void loadCompanies() {
-		final Uri contentUri = CrunchBaseContentProvider.Uris.COMPANIES_URI;
-		final Query request = new Query(contentUri);
-		request.setSortOrder(CompanyTable.Columns.NAME.name);
+		final Uri uri = CrunchBaseContentProvider.Uris.COMPANIES_URI;
+
+        final Query request = new Query(uri);
+		request.setSortOrder(CompanyTable.Columns.NAME);
 		
 		execute(request);
-		showLoading();
 	}
 	
 	@Override
@@ -127,7 +124,7 @@ public class CompanyListFragment extends ArcaAdapterSupportFragment implements O
 	@Override
 	public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 		final Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-		final String itemId = cursor.getString(cursor.getColumnIndex(CompanyTable.Columns.NAME.name));
+		final String itemId = cursor.getString(cursor.getColumnIndex(CompanyTable.Columns.NAME));
 		CompanyActivity.newInstance(getActivity(), itemId);
 	}
 

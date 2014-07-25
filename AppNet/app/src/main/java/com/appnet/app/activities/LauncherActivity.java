@@ -55,6 +55,7 @@ public class LauncherActivity extends Activity {
 		if (!hasAccount) {
 			final Account account = manager.createAccount(AppNetAuthenticator.ACCOUNT_NAME);
 			ContentResolver.setIsSyncable(account, authority, 1);
+            ContentResolver.setSyncAutomatically(account, authority, true);
 			ContentResolver.addPeriodicSync(account, authority, new Bundle(), FIVE_MINUTES);
 			manager.addAccount(account, null);
 			

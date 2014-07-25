@@ -19,6 +19,7 @@ public class AccountsUtil {
 		if (!hasAccount) {
 			final Account account = manager.createAccount(RottenTomatoesAuthenticator.ACCOUNT_NAME);
 			ContentResolver.setIsSyncable(account, authority, 1);
+            ContentResolver.setSyncAutomatically(account, authority, true);
 			ContentResolver.addPeriodicSync(account, authority, Bundle.EMPTY, ONE_DAY_IN_SECONDS);
 			manager.addAccount(account, null);
 			

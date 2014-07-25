@@ -2,8 +2,10 @@ package com.appnet.app.providers;
 
 import android.net.Uri;
 
-import com.appnet.app.datasets.PostTable;
+import io.pivotal.arca.provider.Column;
 import io.pivotal.arca.provider.DatabaseProvider;
+import io.pivotal.arca.provider.SQLiteTable;
+import io.pivotal.arca.provider.Unique;
 
 public class AppNetContentProvider extends DatabaseProvider {
 
@@ -23,4 +25,30 @@ public class AppNetContentProvider extends DatabaseProvider {
 		registerDataset(AUTHORITY, Paths.POSTS + "/*", PostTable.class);
 		return true;
 	}
+
+    public static class PostTable extends SQLiteTable {
+        public static interface Columns extends SQLiteTable.Columns {
+            @Unique(Unique.OnConflict.REPLACE)
+            @Column(Column.Type.TEXT)
+            public static final String ID = "id";
+
+            @Column(Column.Type.TEXT)
+            public static final String CREATED_AT = "created_at";
+
+            @Column(Column.Type.TEXT)
+            public static final String TEXT = "text";
+
+            @Column(Column.Type.TEXT)
+            public static final String NUM_STARS = "num_stars";
+
+            @Column(Column.Type.TEXT)
+            public static final String NUM_REPOSTS = "num_reposts";
+
+            @Column(Column.Type.TEXT)
+            public static final String NUM_REPLIES = "num_replies";
+
+            @Column(Column.Type.TEXT)
+            public static final String IMAGE_URL = "image_url";
+        }
+    }
 }

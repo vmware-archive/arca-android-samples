@@ -1,8 +1,5 @@
 package com.rottentomatoes.app.fragments;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,26 +12,29 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.rottentomatoes.app.R;
+import com.rottentomatoes.app.activities.MovieActivity;
+import com.rottentomatoes.app.adapters.AnimationCursorAdapter;
+import com.rottentomatoes.app.animators.ViewAnimator.DefaultViewAnimator;
+import com.rottentomatoes.app.providers.RottenTomatoesContentProvider;
+import com.rottentomatoes.app.providers.RottenTomatoesContentProvider.MovieTypeView;
+import com.xtremelabs.imageutils.ImageLoader;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 import io.pivotal.arca.adapters.Binding;
 import io.pivotal.arca.adapters.ViewBinder;
 import io.pivotal.arca.dispatcher.Error;
 import io.pivotal.arca.dispatcher.Query;
 import io.pivotal.arca.dispatcher.QueryResult;
 import io.pivotal.arca.fragments.ArcaAdapterSupportFragment;
-import com.rottentomatoes.app.R;
-import com.rottentomatoes.app.activities.MovieActivity;
-import com.rottentomatoes.app.adapters.AnimationCursorAdapter;
-import com.rottentomatoes.app.animators.ViewAnimator.DefaultViewAnimator;
-import com.rottentomatoes.app.datasets.MovieTable;
-import com.rottentomatoes.app.datasets.MovieTypeView;
-import com.rottentomatoes.app.providers.RottenTomatoesContentProvider;
-import com.xtremelabs.imageutils.ImageLoader;
 
 public class MovieListFragment extends ArcaAdapterSupportFragment implements OnItemClickListener, ViewBinder {
 	
 	private static final Collection<Binding> BINDINGS = Arrays.asList(new Binding[] { 
-		new Binding(R.id.list_item_movie_title, MovieTypeView.Columns.TITLE.name),
-		new Binding(R.id.list_item_movie_image, MovieTypeView.Columns.IMAGE_URL.name),
+		new Binding(R.id.list_item_movie_title, MovieTypeView.Columns.TITLE),
+		new Binding(R.id.list_item_movie_image, MovieTypeView.Columns.IMAGE_URL),
 	});
 
 	private String mType;
@@ -82,14 +82,16 @@ public class MovieListFragment extends ArcaAdapterSupportFragment implements OnI
 	}
 	
 	private void refresh() {
-		showLoading();
+        if (mType != null) {
+            showLoading();
 
-		final Uri baseUri = RottenTomatoesContentProvider.Uris.MOVIE_TYPES_URI;
-		final Uri contentUri = Uri.withAppendedPath(baseUri, mType);
-		
-		final Query request = new Query(contentUri, 1000);
-		request.setSortOrder("title asc");
-		execute(request);
+            final Uri uri = RottenTomatoesContentProvider.Uris.MOVIE_CATEGORIES_URI;
+
+            final Query request = new Query(uri, 1000);
+            request.setWhere(MovieTypeView.Columns.TYPE + "=?", mType);
+            request.setSortOrder(MovieTypeView.Columns.TITLE + " asc");
+            execute(request);
+        }
 	}
 
 	@Override
@@ -125,7 +127,7 @@ public class MovieListFragment extends ArcaAdapterSupportFragment implements OnI
 	@Override
 	public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 		final Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-		final String itemId = cursor.getString(cursor.getColumnIndex(MovieTable.Columns.ID.name));
+		final String itemId = cursor.getString(cursor.getColumnIndex(MovieTypeView.Columns.ID));
 		MovieActivity.newInstance(getActivity(), itemId);
 	}
 

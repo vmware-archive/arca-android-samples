@@ -1,21 +1,20 @@
 package com.appnet.app.operations;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import io.pivotal.arca.dispatcher.ErrorBroadcaster;
-import io.pivotal.arca.service.Operation;
-import io.pivotal.arca.service.ServiceError;
-import io.pivotal.arca.service.Task;
+import com.appnet.app.application.AppNetRequests;
+import com.appnet.app.models.PostsResponse;
 
-public class PostListOperation extends Operation {
+import io.pivotal.arca.dispatcher.ErrorBroadcaster;
+import io.pivotal.arca.provider.DataUtils;
+import io.pivotal.arca.service.ServiceError;
+import io.pivotal.arca.service.SimpleOperation;
+
+public class PostListOperation extends SimpleOperation {
 
 
 	public PostListOperation(final Uri uri) {
@@ -26,23 +25,11 @@ public class PostListOperation extends Operation {
 		super(in);
 	}
 
-	@Override
-	public void writeToParcel(final Parcel dest, final int flags) {
-		super.writeToParcel(dest, flags);
-	}
-
-	@Override
-	public Set<Task<?>> onCreateTasks() {
-		final Set<Task<?>> set = new HashSet<Task<?>>();
-		set.add(new PostListTask());
-		return set;
-	}
-
-	@Override
-	public void onSuccess(final Context context, final List<Task<?>> completed) {
-		final ContentResolver resolver = context.getContentResolver();
-		resolver.notifyChange(getUri(), null);
-	}
+    @Override
+    public ContentValues[] onExecute(final Context context) throws Exception {
+        final PostsResponse response = AppNetRequests.getPostList(100);
+        return DataUtils.getContentValues(response.getData());
+    }
 
 	@Override
 	public void onFailure(final Context context, final ServiceError error) {

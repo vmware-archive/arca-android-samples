@@ -1,8 +1,5 @@
 package com.appnet.app.fragments;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,9 +15,14 @@ import android.widget.Toast;
 
 import com.appnet.app.R;
 import com.appnet.app.activities.PostActivity;
-import com.appnet.app.datasets.PostTable;
 import com.appnet.app.monitors.PostListMonitor;
 import com.appnet.app.providers.AppNetContentProvider;
+import com.appnet.app.providers.AppNetContentProvider.PostTable;
+import com.xtremelabs.imageutils.ImageLoader;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 import io.pivotal.arca.adapters.Binding;
 import io.pivotal.arca.adapters.SupportCursorAdapter;
 import io.pivotal.arca.adapters.ViewBinder;
@@ -29,14 +31,13 @@ import io.pivotal.arca.dispatcher.Query;
 import io.pivotal.arca.dispatcher.QueryResult;
 import io.pivotal.arca.fragments.ArcaAdapterSupportFragment;
 import io.pivotal.arca.monitor.ArcaDispatcher;
-import com.xtremelabs.imageutils.ImageLoader;
 
 public class PostListFragment extends ArcaAdapterSupportFragment implements OnItemClickListener, ViewBinder {
 
 	private static final Collection<Binding> BINDINGS = Arrays.asList(new Binding[] { 
-		new Binding(R.id.list_item_post_text, PostTable.Columns.TEXT.name),
-		new Binding(R.id.list_item_post_image, PostTable.Columns.IMAGE_URL.name),
-		new Binding(R.id.list_item_post_created_at, PostTable.Columns.CREATED_AT.name),
+		new Binding(R.id.list_item_post_text, PostTable.Columns.TEXT),
+		new Binding(R.id.list_item_post_image, PostTable.Columns.IMAGE_URL),
+		new Binding(R.id.list_item_post_created_at, PostTable.Columns.CREATED_AT),
 	});
 	
 	private ImageLoader mImageLoader;
@@ -120,7 +121,7 @@ public class PostListFragment extends ArcaAdapterSupportFragment implements OnIt
 	@Override
 	public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
 		final Cursor cursor = (Cursor) adapterView.getItemAtPosition(position);
-		final String itemId = cursor.getString(cursor.getColumnIndex(PostTable.Columns.ID.name));
+		final String itemId = cursor.getString(cursor.getColumnIndex(PostTable.Columns.ID));
 		PostActivity.newInstance(getActivity(), itemId);
 	}
 
